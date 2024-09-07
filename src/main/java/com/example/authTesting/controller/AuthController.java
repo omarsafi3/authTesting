@@ -22,6 +22,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 @RestController
@@ -39,9 +40,11 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<String> addNewUser(@RequestBody User user) {
-        String response = service.addUser(user);
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    public ResponseEntity<?> addNewUser(@RequestBody User user) {
+        String responseMessage = service.addUser(user);
+        Map<String, String> response = new HashMap<>();
+        response.put("message", responseMessage);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
 

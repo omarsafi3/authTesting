@@ -7,28 +7,30 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.util.Date;
 
+
+
 @Entity
-@Table(name = "users")
+@Table(name = "products")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class User {
+public class Products {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
     private int id;
     @Column(nullable = false)
-    private String fullName;
-    @Column(unique = true, length = 100, nullable = false)
-    private String email;
+    private String name;
+    @Column( nullable = false)
+    private int price;
     @Column(nullable = false)
-    private String password;
+    private String quantity;
     @CreationTimestamp
     @Column(updatable = false, name = "created_at")
     private Date createdAt;
     @UpdateTimestamp
     @Column(name = "updated_at")
     private Date updatedAt;
-    private String roles;
+    private String description;
 }
