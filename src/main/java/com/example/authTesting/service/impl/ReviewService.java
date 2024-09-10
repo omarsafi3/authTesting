@@ -3,9 +3,10 @@ package com.example.authTesting.service.impl;
 import com.example.authTesting.entity.Review;
 import com.example.authTesting.repository.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
-
+@Service
 public class ReviewService {
     @Autowired
     private ReviewRepository repository;

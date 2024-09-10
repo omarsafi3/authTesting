@@ -41,9 +41,14 @@ public class User implements UserDetails {
 
     @UpdateTimestamp
     private Date updatedAt;
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Review> reviews;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Cart> carts;
     // This field is for Spring Security to grant authorities based on roles
+
     @Transient
     private Collection<? extends GrantedAuthority> authorities;
 

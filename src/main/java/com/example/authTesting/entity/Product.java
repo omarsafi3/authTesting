@@ -33,6 +33,10 @@ public class Product {
     @Column(name = "updated_at")
     private Date updatedAt;
     private String description;
+
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.LAZY)
     private List<Review> reviews;
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Cart> carts;
 }
