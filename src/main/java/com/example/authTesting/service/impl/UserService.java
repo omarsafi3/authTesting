@@ -21,11 +21,12 @@ public class UserService implements UserDetailsService {
     }
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        // Find the user by email
         Optional<User> userDetail = repository.findByEmail(username);
-        // Converting userDetail to UserDetails
-        return userDetail.map(UserInfoDetails::new)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found " + username));
+        // Return the user if found, or throw an exception if not
+        return userDetail.orElseThrow(() -> new UsernameNotFoundException("User not found: " + username));
     }
+
     public String addUser(User user) {
         user.setPassword(encoder.encode(user.getPassword()));
         repository.save(user);

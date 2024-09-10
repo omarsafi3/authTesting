@@ -1,7 +1,6 @@
 package com.example.authTesting.controller;
 
 import com.example.authTesting.entity.User;
-import com.example.authTesting.service.impl.UserInfoDetails;
 import com.example.authTesting.service.impl.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,9 +22,9 @@ public class UserController {
     }
 
     @GetMapping("/me")
-    public ResponseEntity<UserInfoDetails> authenticatedUser() {
+    public ResponseEntity<User> authenticatedUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        return new ResponseEntity<>((UserInfoDetails) authentication.getPrincipal(), HttpStatus.OK);
+        return new ResponseEntity<>((User) authentication.getPrincipal(), HttpStatus.OK);
     }
     @GetMapping("/")
     public ResponseEntity<List<User>> allUsers() {

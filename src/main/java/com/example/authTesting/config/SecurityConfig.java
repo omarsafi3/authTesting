@@ -36,10 +36,10 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http, AuthenticationProvider authenticationProvider) throws Exception {
         return http
                 .authorizeHttpRequests((auth) -> auth
-                        .requestMatchers("/auth/login", "/auth/register","/auth/refreshToken").permitAll()
-                        .requestMatchers("/admin/**").hasAnyAuthority("ADMIN")
-                        .requestMatchers("/user/**").hasAnyAuthority("USER")
-                        .requestMatchers("/public/**").authenticated()
+                        .requestMatchers("/auth/login", "/auth/register","/auth/refreshToken", "/public/**").permitAll()
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/user/**").hasAnyRole("USER","ADMIN")
+                        .anyRequest().hasRole("ADMIN")
                 )
                 .httpBasic(withDefaults()).csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement((session) -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

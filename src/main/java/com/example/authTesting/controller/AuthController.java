@@ -11,7 +11,6 @@ import com.example.authTesting.security.TokenRefreshRequest;
 import com.example.authTesting.security.TokenRefreshResponse;
 import com.example.authTesting.service.impl.JwtService;
 import com.example.authTesting.service.impl.RefreshTokenService;
-import com.example.authTesting.service.impl.UserInfoDetails;
 import com.example.authTesting.service.impl.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -54,7 +53,7 @@ public class AuthController {
         if (authentication.isAuthenticated()) {
             String token = jwtService.generateToken(authRequest.getUsername());
             Date expiresIn = jwtService.extractExpiration(token);
-            UserInfoDetails userDetails = (UserInfoDetails) authentication.getPrincipal();
+            User userDetails = (User) authentication.getPrincipal();
 
             RefreshToken refreshToken = refreshTokenService.createRefreshToken(userDetails.getId());
             AuthResponse authResponse = new AuthResponse(token,expiresIn , refreshToken.getToken());
