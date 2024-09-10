@@ -1,6 +1,6 @@
 package com.example.authTesting.service.impl;
 
-import com.example.authTesting.entity.Products;
+import com.example.authTesting.entity.Product;
 import com.example.authTesting.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 
@@ -15,22 +15,31 @@ public class ProductService {
         this.repository = repository;
     }
 
-    public String addProduct(Products products) {
-        repository.save(products);
-        return "product Added Successfully";
+    public Product addProduct(Product product) {
+        return repository.save(product);
+
     }
-    public String deleteProductById(int id) {
+    public void deleteProductById(int id) {
         repository.deleteById(id);
-        return "Product deleted successfully";
     }
-    public Optional<Products> getProductByName(String name) {
+    public Optional<Product> getProductByName(String name) {
         return repository.findByName(name);
     }
-    public List<Products> getAllProducts() {
+    public List<Product> getAllProducts() {
         return repository.findAll();
     }
 
-    public Optional<Products> getProductById(int id) {
+    public Optional<Product> getProductById(int id) {
         return repository.findById(id);
+    }
+
+    public Optional<Product> updateProduct(int id,Product updatedProduct) {
+        return repository.findById(id)
+                .map(product -> {
+                    product.setName(updatedProduct.getName());
+                    product.setPrice(updatedProduct.getPrice());
+                    product.setQuantity(updatedProduct.getQuantity());
+                    product.setDescription(updatedProduct.getDescription());
+                });
     }
 }

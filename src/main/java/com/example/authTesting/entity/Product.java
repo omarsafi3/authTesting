@@ -15,7 +15,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Products {
+public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
@@ -25,7 +25,7 @@ public class Products {
     @Column( nullable = false)
     private int price;
     @Column(nullable = false)
-    private String quantity;
+    private int quantity;
     @CreationTimestamp
     @Column(updatable = false, name = "created_at")
     private Date createdAt;

@@ -1,12 +1,16 @@
 package com.example.authTesting.controller;
 
-import com.example.authTesting.entity.Products;
+import com.example.authTesting.entity.Product;
 import com.example.authTesting.service.impl.ProductService;
 
+import org.springframework.data.rest.webmvc.ResourceNotFoundException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-@RequestMapping("/admin/products")
+import java.util.Optional;
+
+@RequestMapping("/user/products")
 @RestController
 public class ProductController {
     private final ProductService productService;
@@ -17,13 +21,18 @@ public class ProductController {
 
     // Add a product (admin only)
     @PostMapping("/add")
-    public String addProduct(@RequestBody Products products) {
-        return productService.addProduct(products);
+    public ResponseEntity<Product> addProduct(@RequestBody Product product) {
+        Product p =productService.addProduct(product);
+        return new ResponseEntity<>(p, HttpStatus.OK) ;
     }
-
+    @PutMapping("/{id}")
+    public ResponseEntity<Product> updateProduct(@RequestBody Product product,@PathVariable int id) {
+        Product p =productService.updateProduct(id,product).orElseThrow(() -> new ResourceNotFoundException("not found"));
+        return new ResponseEntity<>(p,HttpStatus.OK);
+    }
     // Delete a product by ID (admin only)
-    @DeleteMapping("/delete/{id}")
-    public String deleteProduct(@PathVariable int id) {
-        return productService.deleteProductById(id);
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteProduct(@PathVariable int id) {
+        return new ResponseEntity<>("Deleted",HttpStatus.OK);
     }
 }
