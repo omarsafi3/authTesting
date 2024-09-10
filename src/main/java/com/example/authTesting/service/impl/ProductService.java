@@ -40,6 +40,7 @@ public class ProductService {
                     product.setPrice(updatedProduct.getPrice());
                     product.setQuantity(updatedProduct.getQuantity());
                     product.setDescription(updatedProduct.getDescription());
+                    return repository.save(product);
                 });
     }
 }
