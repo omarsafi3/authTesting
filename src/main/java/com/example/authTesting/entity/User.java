@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Entity
@@ -40,7 +41,8 @@ public class User implements UserDetails {
 
     @UpdateTimestamp
     private Date updatedAt;
-
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Review> reviews;
     // This field is for Spring Security to grant authorities based on roles
     @Transient
     private Collection<? extends GrantedAuthority> authorities;

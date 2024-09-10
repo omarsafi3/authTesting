@@ -6,7 +6,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.util.Date;
-
+import java.util.List;
 
 
 @Entity
@@ -33,4 +33,6 @@ public class Product {
     @Column(name = "updated_at")
     private Date updatedAt;
     private String description;
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.LAZY)
+    private List<Review> reviews;
 }
