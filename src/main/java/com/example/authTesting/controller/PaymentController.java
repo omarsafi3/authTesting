@@ -1,8 +1,6 @@
 package com.example.authTesting.controller;
 
-import com.example.authTesting.entity.Order;
 import com.example.authTesting.entity.Payment;
-import com.example.authTesting.service.impl.OrderService;
 import com.example.authTesting.service.impl.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;

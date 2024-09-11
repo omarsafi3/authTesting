@@ -32,7 +32,7 @@ public class OrderController {
     }
     // Delete a product by ID (admin only)
     @DeleteMapping("/{id}")
-        public void deleteorder(@PathVariable Long id) {
+        public void deleteOrder(@PathVariable Long id) {
             orderService.deleteOrder(id);
         }
 
