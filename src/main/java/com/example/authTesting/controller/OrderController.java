@@ -13,7 +13,10 @@ import org.springframework.web.bind.annotation.*;
 public class OrderController {
     @Autowired
     private OrderService orderService;
-
+    @GetMapping
+    public ResponseEntity<?> getAllOrders() {
+        return new ResponseEntity<>(orderService.getAllOrder(), HttpStatus.OK);
+    }
 
     // Add a product (admin only)
     @PostMapping("/add")

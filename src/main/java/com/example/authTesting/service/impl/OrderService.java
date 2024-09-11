@@ -16,8 +16,8 @@ public class OrderService {
     public List<Order> getAllOrder() {
         return orderRepository.findAll();
     }
-    public Order getOrderById(Long id) {
-        return orderRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Order not found"));
+    public Optional<Order> getOrderById(Long id) {
+        return orderRepository.findById(id);
     }
     public Order addOrder(Order order) {
         return orderRepository.save(order);
