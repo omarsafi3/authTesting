@@ -20,11 +20,11 @@ public class ReviewService {
         return repository.save(review);
 
     }
-    public void deleteReview(int id) {
+    public void deleteReview(Long id) {
         repository.deleteById(id);
     }
 
-    public Optional<Review> updateReview(int id,Review updatedReview) {
+    public Optional<Review> updateReview(Long id,Review updatedReview) {
         return repository.findById(id)
                 .map(review -> {
                     review.setText(updatedReview.getText());

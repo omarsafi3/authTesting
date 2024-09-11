@@ -1,4 +1,4 @@
-package com.example.authTesting.service;
+package com.example.authTesting.service.impl;
 
 import com.example.authTesting.repository.RefreshTokenRepository;
 import jakarta.transaction.Transactional;

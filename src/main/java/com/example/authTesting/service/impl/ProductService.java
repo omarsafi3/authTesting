@@ -24,11 +24,11 @@ public class ProductService {
         return repository.findAll();
     }
 
-    public Optional<Product> getProductById(int id) {
+    public Optional<Product> getProductById(Long id) {
         return repository.findById(id);
     }
 
-    public Optional<Product> updateProduct(int id,Product updatedProduct) {
+    public Optional<Product> updateProduct(Long id,Product updatedProduct) {
         return repository.findById(id)
                 .map(product -> {
                     product.setName(updatedProduct.getName());
@@ -39,7 +39,7 @@ public class ProductService {
                 });
     }
 
-    public boolean deleteProduct(int id) {
+    public boolean deleteProduct(Long id) {
         if (repository.existsById(id)) {
             repository.deleteById(id);
             return true;
