@@ -46,7 +46,7 @@ public class User implements UserDetails {
     private List<Review> reviews;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Cart> carts;
+    private List<Cart> cartItems;
     // This field is for Spring Security to grant authorities based on roles
 
     @Transient
@@ -67,6 +67,14 @@ public class User implements UserDetails {
         this.email = user.getEmail();
         this.password = user.getPassword();
         this.authorities = user.getAuthorities();
+        this.roles = user.getRoles();
+        this.id = user.getId();
+        this.fullName = user.getFullName();
+        this.createdAt = user.getCreatedAt();
+        this.updatedAt = user.getUpdatedAt();
+        this.reviews = user.getReviews();
+        this.cartItems = user.getCartItems();
+
     }
 
 
