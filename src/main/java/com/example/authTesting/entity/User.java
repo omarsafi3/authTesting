@@ -48,7 +48,9 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Cart> cartItems;
     // This field is for Spring Security to grant authorities based on roles
-
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Order> orders;
+    
     @Transient
     private Collection<? extends GrantedAuthority> authorities;
 
