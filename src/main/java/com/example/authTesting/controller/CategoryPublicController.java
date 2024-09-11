@@ -23,7 +23,7 @@ public class CategoryPublicController {
         return categoryService.getAllCategories();
     }
 
-    @GetMapping
+    @GetMapping("/{id}")
     public Category getCategoryById(@RequestParam Long id) {
         return categoryService.getCategoryById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Category not found"));
     }
