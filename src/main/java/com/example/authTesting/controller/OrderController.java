@@ -10,12 +10,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@RequestMapping("/api/v1/user/products")
+@RequestMapping("/api/v1/user/orders")
 @RestController
 public class OrderController {
     @Autowired
     private OrderService orderService;
-
+    @GetMapping
+    public ResponseEntity<?> getAllOrders() {
+        return new ResponseEntity<>(orderService.getAllOrder(), HttpStatus.OK);
+    }
 
     // Add a product (admin only)
     @PostMapping("/add")
