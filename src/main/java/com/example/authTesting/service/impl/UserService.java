@@ -38,4 +38,8 @@ public class UserService implements UserDetailsService {
         return new ArrayList<>(repository.findAll());
     }
 
+    public Optional<User> getUserById(Long id) {
+        return repository.findById(id);
+    }
+
 }

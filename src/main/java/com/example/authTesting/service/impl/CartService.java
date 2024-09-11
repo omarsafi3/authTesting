@@ -17,17 +17,13 @@ public class CartService {
     private CartRepository cartRepository;
 
 
-    public List<Cart> getCartItemsByUserId(Long userId) {
-        return CartRepository.findByUserId(userId);
-    }
+
 
     public Cart addCartItem(Cart cart) {
         return CartRepository.save(cart);
     }
 
-    public Cart updateCartItem(Cart cart) {
-        return CartRepository.save(cart);
-    }
+
 
     public void deleteCartItemByUserId(Long id) {
         cartRepository.deleteByUserId(id);

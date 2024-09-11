@@ -5,7 +5,6 @@ import com.example.authTesting.service.impl.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/user/cart")
@@ -13,10 +12,6 @@ public class CartController {
     @Autowired
     private CartService cartService;
 
-    @GetMapping("/all/{id}")
-    public List<Cart> getAllCartItemsByUserId(@PathVariable Long id) {
-        return cartService.getCartItemsByUserId(id);
-    }
 
     @PostMapping("/add")
     public Cart addCartItem(Cart cart) {

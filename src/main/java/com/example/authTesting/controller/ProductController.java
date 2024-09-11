@@ -7,6 +7,7 @@ import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Optional;
 
@@ -27,13 +28,13 @@ public class ProductController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Product> updateProduct(@RequestBody Product product,@PathVariable int id) {
-        Product p =productService.updateProduct(id,product).orElseThrow(() -> new ResourceNotFoundException("not found"));
+    public ResponseEntity<Product> updateProduct(@RequestBody Product product,@PathVariable Long id) {
+        Product p =productService.updateProduct(id,product).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found"));
         return new ResponseEntity<>(p,HttpStatus.OK);
     }
     // Delete a product by ID (admin only)
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteProduct(@PathVariable int id) {
+    public ResponseEntity<String> deleteProduct(@PathVariable Long id) {
         boolean deleted = productService.deleteProduct(id); // Assuming your service has such a method.
         if (deleted) {
             return new ResponseEntity<>("Product deleted", HttpStatus.OK);

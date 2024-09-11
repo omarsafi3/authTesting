@@ -13,7 +13,7 @@ import java.time.Instant;
 import java.util.Optional;
 
 @Repository
-public interface ReviewRepository extends JpaRepository<Review, Integer> {
+public interface ReviewRepository extends JpaRepository<Review, Long> {
     Optional<Review> findByProduct(Product product);
     Optional<Review> findByUser(User user);
 }
