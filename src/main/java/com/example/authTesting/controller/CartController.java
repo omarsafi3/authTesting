@@ -13,7 +13,7 @@ public class CartController {
     private CartService cartService;
 
 
-    @PostMapping("/add")
+    @PostMapping
     public Cart addCartItem(Cart cart) {
         return cartService.addCartItem(cart);
     }
