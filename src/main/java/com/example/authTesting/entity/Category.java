@@ -18,7 +18,6 @@ public class Category {
     private long id;
     @Column(nullable = false)
     private String name;
-    @Column(nullable = false)
 
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Product> products;

@@ -16,24 +16,20 @@ public class CartService {
     @Autowired
     private CartRepository cartRepository;
 
-    public List<Cart> getAllCarts() {
-        return CartRepository.findAll();
-    }
 
-    public Cart getCartById(Long id) {
-        return CartRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Cart not found"));
-    }
-
-    public List<Cart> getCartsByUserId(Long userId) {
+    public List<Cart> getCartItemsByUserId(Long userId) {
         return CartRepository.findByUserId(userId);
     }
-    public Cart addCart(Cart cart) {
+
+    public Cart addCartItem(Cart cart) {
         return CartRepository.save(cart);
     }
-    public Cart updateCart(Cart cart) {
+
+    public Cart updateCartItem(Cart cart) {
         return CartRepository.save(cart);
     }
-    public void deleteCartByUserId(Long id) {
+
+    public void deleteCartItemByUserId(Long id) {
         cartRepository.deleteByUserId(id);
     }
 }

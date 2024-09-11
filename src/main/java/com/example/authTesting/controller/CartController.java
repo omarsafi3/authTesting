@@ -3,9 +3,7 @@ package com.example.authTesting.controller;
 import com.example.authTesting.entity.Cart;
 import com.example.authTesting.service.impl.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -14,6 +12,21 @@ import java.util.List;
 public class CartController {
     @Autowired
     private CartService cartService;
+
+    @GetMapping("/all/{id}")
+    public List<Cart> getAllCartItemsByUserId(@PathVariable Long id) {
+        return cartService.getCartItemsByUserId(id);
+    }
+
+    @PostMapping("/add")
+    public Cart addCartItem(Cart cart) {
+        return cartService.addCartItem(cart);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public void deleteCartItemByUserId(@PathVariable Long id) {
+        cartService.deleteCartItemByUserId(id);
+    }
 
 
 }
