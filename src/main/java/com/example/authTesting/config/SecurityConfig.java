@@ -36,9 +36,9 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http, AuthenticationProvider authenticationProvider) throws Exception {
         return http
                 .authorizeHttpRequests((auth) -> auth
-                        .requestMatchers("/auth/login", "/auth/register","/auth/refreshToken", "/public/**").permitAll()
-                        .requestMatchers("/admin/**").hasRole("ADMIN")
-                        .requestMatchers("/user/**").hasAnyRole("USER","ADMIN")
+                        .requestMatchers("/api/v1/auth/login", "/api/v1/auth/register","/api/v1/auth/refreshToken", "/api/v1/public/**").permitAll()
+                        .requestMatchers("/api/v1/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/api/v1/user/**").hasAnyRole("USER","ADMIN")
                         .anyRequest().hasRole("ADMIN")
                 )
                 .httpBasic(withDefaults()).csrf(AbstractHttpConfigurer::disable)

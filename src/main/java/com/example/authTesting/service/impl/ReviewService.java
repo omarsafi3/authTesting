@@ -5,24 +5,24 @@ import com.example.authTesting.repository.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 @Service
 public class ReviewService {
     @Autowired
     private ReviewRepository repository;
 
-
+    public List<Review> getAllReviews() {
+        return repository.findAll();
+    }
 
     public Review addReview(Review review) {
         return repository.save(review);
 
     }
-    public void deleteReviewById(int id) {
+    public void deleteReview(int id) {
         repository.deleteById(id);
     }
-
-
-
 
     public Optional<Review> updateReview(int id,Review updatedReview) {
         return repository.findById(id)

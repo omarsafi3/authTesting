@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
-@RequestMapping("/user/review")
+@RequestMapping("/api/v1/user/review")
 @RestController
 public class ReviewController {
     @Autowired

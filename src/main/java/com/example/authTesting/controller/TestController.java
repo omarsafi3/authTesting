@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RequestMapping("/public/test")
+@RequestMapping("/api/v1/public/test")
 @RestController
 public class TestController {
     @GetMapping("/hello/{id}")

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import java.util.Optional;
 
-@RequestMapping("/public/products")
+@RequestMapping("/api/v1/public/products")
 @RestController
 public class ProductPublicController {
     @Autowired
