@@ -19,12 +19,7 @@ public class ProductService {
         return repository.save(product);
 
     }
-    public void deleteProductById(int id) {
-        repository.deleteById(id);
-    }
-    public Optional<Product> getProductByName(String name) {
-        return repository.findByName(name);
-    }
+
     public List<Product> getAllProducts() {
         return repository.findAll();
     }
@@ -42,5 +37,13 @@ public class ProductService {
                     product.setDescription(updatedProduct.getDescription());
                     return repository.save(product);
                 });
+    }
+
+    public boolean deleteProduct(int id) {
+        if (repository.existsById(id)) {
+            repository.deleteById(id);
+            return true;
+        }
+        return false;
     }
 }

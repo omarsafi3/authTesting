@@ -2,8 +2,10 @@ package com.example.authTesting.exception;
 
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.security.SignatureException;
+import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.AccountStatusException;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -44,6 +46,10 @@ public class GlobalExceptionHandler {
         exception.printStackTrace();
 
         return createProblemDetail(HttpStatus.INTERNAL_SERVER_ERROR, "Unknown internal server error.", exception.getMessage());
+    }
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<String> handleResourceNotFound(ResourceNotFoundException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
     }
 
     private ProblemDetail createProblemDetail(HttpStatus status, String description, String message) {

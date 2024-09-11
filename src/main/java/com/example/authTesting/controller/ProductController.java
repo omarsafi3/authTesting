@@ -22,9 +22,10 @@ public class ProductController {
     // Add a product (admin only)
     @PostMapping("/add")
     public ResponseEntity<Product> addProduct(@RequestBody Product product) {
-        Product p =productService.addProduct(product);
-        return new ResponseEntity<>(p, HttpStatus.OK) ;
+        Product p = productService.addProduct(product);
+        return new ResponseEntity<>(p, HttpStatus.OK);
     }
+
     @PutMapping("/{id}")
     public ResponseEntity<Product> updateProduct(@RequestBody Product product,@PathVariable int id) {
         Product p =productService.updateProduct(id,product).orElseThrow(() -> new ResourceNotFoundException("not found"));
@@ -33,6 +34,12 @@ public class ProductController {
     // Delete a product by ID (admin only)
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteProduct(@PathVariable int id) {
-        return new ResponseEntity<>("Deleted",HttpStatus.OK);
+        boolean deleted = productService.deleteProduct(id); // Assuming your service has such a method.
+        if (deleted) {
+            return new ResponseEntity<>("Product deleted", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Product not found", HttpStatus.NOT_FOUND);
+        }
     }
+
 }
