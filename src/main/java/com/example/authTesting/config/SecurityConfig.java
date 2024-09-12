@@ -37,9 +37,9 @@ public class SecurityConfig {
         return http
                 .authorizeHttpRequests((auth) -> auth
                         .requestMatchers("/api/v1/auth/login", "/api/v1/auth/register","/api/v1/auth/refreshToken", "/api/v1/public/**").permitAll()
-                        .requestMatchers("/api/v1/admin/**").hasRole("ADMIN")
-                        .requestMatchers("/api/v1/user/**").hasAnyRole("USER","ADMIN")
-                        .anyRequest().hasRole("ADMIN")
+                        .requestMatchers("/api/v1/admin/**").hasAuthority("ADMIN")
+                        .requestMatchers("/api/v1/user/**").hasAnyAuthority("USER","ADMIN")
+                        .anyRequest().hasAuthority("ADMIN")
                 )
                 .httpBasic(withDefaults()).csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement((session) -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

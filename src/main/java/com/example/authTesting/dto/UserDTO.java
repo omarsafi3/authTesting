@@ -1,19 +1,18 @@
 package com.example.authTesting.dto;
 
 import com.example.authTesting.entity.Cart;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
+@Data
 public class UserDTO {
+    private Long id;
     private String fullName;
-    private List<Cart> cartItems;
-
+    private String email;
+    private List<ReviewDTO> reviews;
+    // Add other fields as needed
 }
+

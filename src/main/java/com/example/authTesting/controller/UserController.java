@@ -39,14 +39,13 @@ public class UserController {
     @GetMapping("/user/{id}")
     public ResponseEntity<UserDTO> getUserById(@PathVariable Long id) {
         // Find the user, or return NOT_FOUND if the user doesn't exist
-        User user = userService.getUserById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
+        UserDTO user = userService.getUserById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
+        return new ResponseEntity<>(user, HttpStatus.OK);
 
         // Convert the User entity to a UserDTO
-        UserDTO userDTO = new UserDTO(user.getFullName(), user.getCartItems());
 
         // Return the UserDTO and HTTP 200 OK status
-        return new ResponseEntity<>(userDTO, HttpStatus.OK);
+
     }
 
 }
