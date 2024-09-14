@@ -35,6 +35,7 @@ public class ProductService {
                     product.setPrice(updatedProduct.getPrice());
                     product.setQuantity(updatedProduct.getQuantity());
                     product.setDescription(updatedProduct.getDescription());
+                    product.setPhoto(updatedProduct.getPhoto());
                     return repository.save(product);
                 });
     }

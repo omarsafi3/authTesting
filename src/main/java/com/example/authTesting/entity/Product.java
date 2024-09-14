@@ -34,14 +34,25 @@ public class Product {
     private Date updatedAt;
     private String description;
 
+    @Lob
+    @Column(name = "photo")
+    private byte[] photo;
+
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.LAZY)
     private List<Review> reviews;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Cart> carts;
 
-    @ManyToOne
-    @JoinColumn(name = "category_id", nullable = false)
-    private Category category;
+//    @ManyToOne
+////    @JoinColumn(name = "category_id", nullable = false)
+////    private Category category;
 
+    public Product(String name,String description, int price, int quantity, byte[] photoBytes) {
+        this.name = name;
+        this.description= description;
+        this.price = price;
+        this.quantity = quantity;
+        this.photo = photoBytes;
+    }
 }
