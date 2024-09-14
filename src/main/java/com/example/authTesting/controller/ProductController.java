@@ -1,9 +1,10 @@
 package com.example.authTesting.controller;
 
+import com.example.authTesting.entity.Category;
 import com.example.authTesting.entity.Product;
+import com.example.authTesting.repository.CategoryRepository;
 import com.example.authTesting.service.impl.ProductService;
 
-import org.apache.thrift.LoggerFactory;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,9 +18,11 @@ import java.util.Optional;
 @RestController
 public class ProductController {
     private final ProductService productService;
+    private final CategoryRepository categoryRepository;
 
-    public ProductController(ProductService productService) {
+    public ProductController(ProductService productService, CategoryRepository categoryRepository) {
         this.productService = productService;
+        this.categoryRepository = categoryRepository;
     }
 
 
@@ -42,6 +45,8 @@ public class ProductController {
 
             // Create a new Product object with the provided data
             Product product = new Product(name, description, price, quantity, photoBytes);
+            Optional<Category> category = categoryRepository .findById(1L);
+            product.setCategory(category.get());
 
             // Save the product using the service
             Product savedProduct = productService.addProduct(product);
@@ -49,8 +54,7 @@ public class ProductController {
             return new ResponseEntity<>(savedProduct, HttpStatus.OK);
         } catch (Exception e) {
             // Use a logging framework instead of e.printStackTrace()
-            LoggerFactory.getLogger(getClass()).error("Error adding product", e);
-            e.printStackTrace();
+
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

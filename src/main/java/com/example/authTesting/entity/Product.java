@@ -35,7 +35,7 @@ public class Product {
     private String description;
 
     @Lob
-    @Column(name = "photo")
+    @Column(name = "photo", columnDefinition = "LONGBLOB")
     private byte[] photo;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.LAZY)
@@ -44,9 +44,9 @@ public class Product {
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Cart> carts;
 
-//    @ManyToOne
-////    @JoinColumn(name = "category_id", nullable = false)
-////    private Category category;
+    @ManyToOne
+    @JoinColumn(name = "category_id", nullable = false)
+    private Category category;
 
     public Product(String name,String description, int price, int quantity, byte[] photoBytes) {
         this.name = name;
